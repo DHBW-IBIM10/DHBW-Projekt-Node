@@ -1,9 +1,7 @@
 /**
- * Created with IntelliJ IDEA.
  * User: joeboden
  * Date: 09.12.12
  * Time: 14:11
- * To change this template use File | Settings | File Templates.
  */
 var http = require("http");
 
