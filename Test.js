@@ -1,5 +1,14 @@
 // Initialize the basis for the web app
-var express = require("express");
+var http = require('http');
+var express = require('express');
+var fs = require('fs');
+var https = require('https');
+
+var httpsOptions = {
+    key: fs.readFileSync(__dirname + '/privatekey.pem')
+    , cert: fs.readFileSync(__dirname + '/certificate.pem')
+}
+
 var app = express();
 
 // enabling Express to service static files. use /UI as root for localhost
@@ -35,6 +44,7 @@ app.post('/insurances', function (req, res) {
                     valid = false;
                     addToInvalidFields(invalidFields, req.body[i].name,req.body[i].value);
                 }
+                // for testing purposes!
                 addToInvalidFields(invalidFields, req.body[i].name,req.body[i].value);
                 break;
             case 'title':
@@ -102,5 +112,6 @@ app.post('/insurances', function (req, res) {
 
 });
 
-// Create the http server on port 3000
-app.listen(8888);
+// Create the http server on port 8888
+http.createServer(app).listen(8888);
+https.createServer(httpsOptions, app).listen(4431);
