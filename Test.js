@@ -12,7 +12,7 @@ var httpsOptions = {
 var app = express();
 
 // enabling Express to service static files. use /UI as root for localhost
-app.use(express.static(__dirname + '/UI'));
+app.use(express.static(__dirname + '/'));
 
 
 app.configure(function(){
